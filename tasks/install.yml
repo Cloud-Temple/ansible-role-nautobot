@@ -189,8 +189,13 @@
     - skip_ansible_lint # login shell is required to exec as nautobot user with profile
 
 - name: install | create nautobot systemd worker service
+  vars:
+    template:
+      nautobot: "{{ nautobot_service_template }}"
+      nautobot-worker: "nautobot-worker.service.j2"
+      nautobot-scheduler: "nautobot-scheduler.service.j2"
   ansible.builtin.template:
-    src: "{{ item }}.service.j2"
+    src: "{{ template[item] }}"
     dest: "/etc/systemd/system/{{ item }}.service"
     owner: root
     group: root

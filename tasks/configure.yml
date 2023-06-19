@@ -13,7 +13,7 @@
 
 - name: configure | configure nautobot_config.py
   ansible.builtin.template:
-    src: nautobot_config.py.j2
+    src: "{{ nautobot_config_template }}"
     dest: "{{ nautobot_root }}/nautobot_config.py"
     owner: "{{ nautobot_system_user }}"
     mode: '0664'

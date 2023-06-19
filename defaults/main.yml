@@ -274,3 +274,7 @@ nautobot_time_format:
 # configuration class (preferred), or a package containing an application.
 # https://nautobot.readthedocs.io/en/latest/configuration/optional-settings/#extra-applications
 nautobot_extra_installed_apps: []
+
+# Override template file
+nautobot_config_template: "nautobot_config.py.j2"
+nautobot_service_template: "nautobot.service.j2"
