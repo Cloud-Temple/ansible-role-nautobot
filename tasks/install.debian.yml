@@ -24,3 +24,12 @@
     - libsasl2-dev
     - libssl-dev
   when: nautobot_auth_ldap is defined
+
+- name: install.debian | install system packages for SSO authentication
+  ansible.builtin.apt:
+    name:
+      - libxmlsec1-dev
+      - libxmlsec1-openssl
+      - pkg-config
+    state: present
+  when: nautobot_auth_sso is defined

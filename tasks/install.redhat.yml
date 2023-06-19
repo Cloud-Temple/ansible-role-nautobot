@@ -18,3 +18,15 @@
     - gcc
     - openldap-devel
   when: nautobot_auth_ldap is defined
+
+- name: install.redhat | install system packages for SSO authentication
+  ansible.builtin.yum:
+    name:
+      - gcc
+      - libtool-ltdl-devel
+      - libxml2-devel
+      - xmlsec1-devel
+      - xmlsec1-openssl-devel
+    enablerepo: powertools
+    state: present
+  when: nautobot_auth_sso is defined

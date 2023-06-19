@@ -102,6 +102,10 @@ AUTHENTICATION_BACKENDS = {{ nautobot_authentication_backends | to_nice_json }}
 {{ nautobot_auth_ldap.config | default() }}
 {% endif %}
 
+{% if nautobot_auth_sso is defined %}
+{{ nautobot_auth_sso.config | default() }}
+{% endif %}
+
 BANNER_TOP = '{{ nautobot_banner.top }}'
 BANNER_BOTTOM = '{{ nautobot_banner.bottom }}'
 BANNER_LOGIN = '{{ nautobot_banner_login }}'
