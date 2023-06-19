@@ -7,7 +7,7 @@
     executable: /bin/bash
   become: yes
   become_method: sudo
-  become_flags: --login
+  become_flags: -H -S -n -i
   become_user: "{{ nautobot_system_user }}"
   listen: restart_nautobot
   register: config_check

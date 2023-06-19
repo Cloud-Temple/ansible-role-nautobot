@@ -113,7 +113,7 @@
     executable: /bin/bash
   become: yes
   become_method: sudo
-  become_flags: --login
+  become_flags: -H -S -n -i
   become_user: "{{ nautobot_system_user }}"
   notify: restart_nautobot
   register: nautobot_db_migration
@@ -132,7 +132,7 @@
     executable: /bin/bash
   become: yes
   become_method: sudo
-  become_flags: --login
+  become_flags: -H -S -n -i
   become_user: "{{ nautobot_system_user }}"
   notify: restart_nautobot
   register: nautobot_db_migration
@@ -154,7 +154,7 @@
     executable: /bin/bash
   become: yes
   become_method: sudo
-  become_flags: --login
+  become_flags: -H -S -n -i
   become_user: "{{ nautobot_system_user }}"
   register: result
   loop: "{{ nautobot_superusers }}"
@@ -178,7 +178,7 @@
     executable: /bin/bash
   become: yes
   become_method: sudo
-  become_flags: --login
+  become_flags: -H -S -n -i
   become_user: "{{ nautobot_system_user }}"
   register: nautobot_static_directories
   changed_when: "'0 static files copied' not in nautobot_static_directories.stdout"
