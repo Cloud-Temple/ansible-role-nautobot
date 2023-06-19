@@ -22,11 +22,11 @@ ALLOWED_HOSTS = {{ nautobot_allowed_hosts|to_json }}
 
 DATABASES = {
     "default": {
-      'NAME': '{{ nautobot_db_name }}',        
-      'USER': '{{ nautobot_db_username }}',     
-      'PASSWORD': '{{ nautobot_db_password }}', 
-      'HOST': '{{ nautobot_db_host }}',         
-      'PORT': '{{ nautobot_db_port }}',         
+      'NAME': '{{ nautobot_db_name }}',
+      'USER': '{{ nautobot_db_username }}',
+      'PASSWORD': '{{ nautobot_db_password }}',
+      'HOST': '{{ nautobot_db_host }}',
+      'PORT': '{{ nautobot_db_port }}',
       'CONN_MAX_AGE': {{ nautobot_db_conn_age }},
       "ENGINE": "django.db.backends.postgresql",
     }
@@ -186,7 +186,9 @@ PLUGINS = {{ nautobot_plugins | map(attribute='name') | to_json }}
 
 {% set plugins_config = dict() %}
 {% for plugin in nautobot_plugins %}
+{% if plugin.config is defined %}
 {% set x = plugins_config.__setitem__(plugin.name, plugin.config) %}
+{% endif %}
 {% endfor %}
 PLUGINS_CONFIG = {{ plugins_config | to_json }}
 
